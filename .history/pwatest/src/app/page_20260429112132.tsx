@@ -67,11 +67,7 @@ function PushNotificationManager() {
 
   async function sendTestNotification() {
     if (subscription) {
-      // 중요: subscription 객체를 순수 JSON 데이터로 변환합니다.
-      const serializedSub = JSON.parse(JSON.stringify(subscription));
-      // 변환된 데이터를 서버 액션으로 보냅니다.
-      await sendNotification(message, serializedSub);
-      // await sendNotification(message, subscription);
+      await sendNotification(message, subscription);
       setMessage("");
     }
   }
@@ -86,19 +82,19 @@ function PushNotificationManager() {
       {subscription ? (
         <>
           <p>You are subscribed to push notifications.</p>
-          <button className="cursor-pointer border-2 border-black" onClick={unsubscribeFromPush}>Unsubscribe</button>
+          <button className="cursor-pointer" onClick={unsubscribeFromPush}>Unsubscribe</button>
           <input
             type="text"
             placeholder="Enter notification message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button className="cursor-pointer border-2 border-black" onClick={sendTestNotification}>Send Test</button>
+          <button className="cursor-pointer" onClick={sendTestNotification}>Send Test</button>
         </>
       ) : (
         <>
           <p>You are not subscribed to push notifications.</p>
-          <button className="cursor-pointer border-2 border-black" onClick={subscribeToPush}>Subscribe</button>
+          <button className="cursor-pointer" onClick={subscribeToPush}>Subscribe</button>
         </>
       )}
     </div>
