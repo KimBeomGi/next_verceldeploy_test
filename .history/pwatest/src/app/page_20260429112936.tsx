@@ -109,14 +109,6 @@ function InstallPrompt() {
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  function installPWA() {
-    if(deferredPrompt){
-      alert("설치가 돼요")
-      deferredPrompt?.prompt()
-    }else{
-      alert("설치가 안돼요.")
-    }
-  }
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (event) => {
@@ -139,7 +131,7 @@ function InstallPrompt() {
       <h3 className="text-2xl">Install App</h3>
       <button
         className="text-[20px] w-fit pt-1.5 cursor-pointer border-2 border-gray-500"
-        onClick={() => installPWA()}
+        onClick={() => deferredPrompt?.prompt()}
       >
         Add to Home Screen
       </button>
