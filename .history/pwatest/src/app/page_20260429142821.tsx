@@ -177,35 +177,7 @@ function PushNotificationManager() {
 //     </div>
 //   );
 // }
-function InstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
-  useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e); // 이때 비로소 배너가 화면에 나타남!
-    });
-  }, []);
-
-  if (!deferredPrompt) return null; // 설치 불가능할 땐 아예 안 보임
-
-  return (
-    <div className="fixed bottom-4 left-4 right-4 bg-white p-4 shadow-xl rounded-2xl border flex justify-between items-center animate-bounce-in">
-      <div>
-        <p className="font-bold">앱으로 더 편하게 이용하세요</p>
-        <p className="text-sm text-gray-500">
-          홈 화면에 추가하고 알림을 받아보세요.
-        </p>
-      </div>
-      <button
-        onClick={() => deferredPrompt.prompt()}
-        className="bg-black text-white px-4 py-2 rounded-lg font-medium"
-      >
-        설치하기
-      </button>
-    </div>
-  );
-}
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
