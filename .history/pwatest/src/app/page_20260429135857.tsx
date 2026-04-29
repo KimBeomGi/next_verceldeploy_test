@@ -172,10 +172,10 @@ export default function Home() {
           <p>왜안대!</p>
         </div>
         <div>
-          <h1 className="text-[40px]">
-            이건 뭘까요?
+          <h1 className="text-[20px]">
+            이건 될걸?
           </h1>
-          <button className="text-[20px] border-2 border-black rounded-sm cursor-pointer" onClick={() => {const result = window.prompt("된다", ''); alert(result);}}>된다 얍!</button>
+          <button className="">된다 얍!</button>
         </div>
         <Image
           className="dark:invert"

@@ -173,7 +173,7 @@ export default function Home() {
         </div>
         <div>
           <h1 className="text-[40px]">
-            이건 뭘까요?
+            이건 될걸?
           </h1>
           <button className="text-[20px] border-2 border-black rounded-sm cursor-pointer" onClick={() => {const result = window.prompt("된다", ''); alert(result);}}>된다 얍!</button>
         </div>
