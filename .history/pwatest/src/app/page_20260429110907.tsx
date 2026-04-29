@@ -2,14 +2,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { subscribeUser, unsubscribeUser, sendNotification } from "./actions";
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
 
 function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -104,13 +96,10 @@ function PushNotificationManager() {
 function InstallPrompt() {
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState()
 
   useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault()
-      setDeferredPrompt(event as BeforeInstallPromptEvent);
-    });
+    window.addEventListener('beforeinstallprompt', () => {})
     setIsIOS(
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream,
     );
@@ -125,12 +114,7 @@ function InstallPrompt() {
   return (
     <div>
       <h3 className="text-2xl">Install App</h3>
-      <button
-        className="text-[20px] w-fit pt-1.5 cursor-pointer"
-        onClick={() => deferredPrompt?.prompt()}
-      >
-        Add to Home Screen
-      </button>
+      <button className="text-[20px] w-fit pt-1.5 cursor-pointer" onClick={deferredPrompt.prompt}>Add to Home Screen</button>
       {isIOS && (
         <p>
           To install this app on your iOS device, tap the share button

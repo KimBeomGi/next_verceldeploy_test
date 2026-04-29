@@ -104,12 +104,11 @@ function PushNotificationManager() {
 function InstallPrompt() {
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState();
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault()
-      setDeferredPrompt(event as BeforeInstallPromptEvent);
+      setDeferredPrompt(event);
     });
     setIsIOS(
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream,
