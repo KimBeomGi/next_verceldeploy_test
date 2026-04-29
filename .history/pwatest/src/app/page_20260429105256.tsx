@@ -138,9 +138,6 @@ export default function Home() {
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <PushNotificationManager />
         <InstallPrompt />
-        <div>
-          <p>왜안대!</p>
-        </div>
         <Image
           className="dark:invert"
           src="/next.svg"
